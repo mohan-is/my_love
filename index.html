@@ -1,0 +1,579 @@
+<html>
+    <head>
+       
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+
+
+/* <-------------------------------------------------------------------------------------------------------> */
+           *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4);
+    overflow:hidden;
+}
+
+.question{
+    display:none;
+}
+
+.question.active{
+    display:block;
+    animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+#quiz{
+    width:380px;
+    background:#fff;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+}
+
+#quiz h2{
+    color:#ff4d6d;
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+#quiz p{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    line-height: 1.6;
+
+    /* Gradient Text */
+    background: linear-gradient(45deg, #ff4d6d, #ff8fab, #ff4d6d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 10px rgba(255, 77, 109, 0.2);
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:2px solid #ffc2d1;
+    border-radius:10px;
+    font-size:17px;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus{
+    border-color:#ff4d6d;
+    box-shadow:0 0 10px rgba(255,77,109,.3);
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(45deg,#ff4d6d,#ff758f);
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(255,77,109,.4);
+}
+
+button:active{
+    transform:scale(.98);
+}
+
+.heart{
+    font-size:45px;
+    margin-bottom:15px;
+    animation:beat 1s infinite;
+}
+
+@keyframes beat{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+/* <-----------------------------------------love message ---------------------------------> */
+      
+
+    .love-message{
+    font-size:22px;
+    line-height:1.8;
+    color:#ff2e63;
+    text-align:center;
+    margin:25px 0;
+    animation:fadeIn 1s ease;
+}
+
+.love-message span{
+    display:block;
+    margin-top:20px;
+    font-size:30px;
+    font-weight:bold;
+    color:#d90429;
+    text-shadow:0 0 15px rgba(255,0,76,.5);
+    animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px #ff4d6d;
+    }
+    to{
+        text-shadow:0 0 25px #ff006e,0 0 35px #ff4d6d;
+    }
+}
+
+button{
+    background:linear-gradient(45deg,#ff4d6d,#ff006e);
+}
+/* <-------------------------------------------------- bucket list -------------------------------------> */
+.Bucketlist{
+    position: fixed;
+    top: 0;
+    right: -420px;   /* Hidden outside the screen */
+    width: 400px;
+    height: 100vh;
+    background: #fff;
+    padding: 30px;
+    box-shadow: -10px 0 25px rgba(0,0,0,.25);
+    transition: right .6s ease;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.Bucketlist.show{
+    right: 0;   /* Slide into view */
+}
+
+.Bucketlist h2{
+    color:#ff4d6d;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.Bucketlist p{
+    text-align:left;
+    font-size:20px;
+    line-height:2;
+}
+
+/* ---------------- Mobile Responsive ---------------- */
+@media (max-width:768px){
+
+    body{
+        overflow-y:auto;
+        padding:20px 10px;
+        align-items:flex-start;
+    }
+
+    #quiz{
+        width:100%;
+        max-width:380px;
+        padding:22px;
+        border-radius:18px;
+        margin:20px auto;
+    }
+
+    .page-title{
+        font-size:28px;
+        letter-spacing:1px;
+        margin-bottom:18px;
+    }
+
+    #quiz h2{
+        font-size:24px;
+    }
+
+    #quiz p{
+        font-size:18px;
+        line-height:1.6;
+    }
+
+    input{
+        font-size:16px;
+        padding:12px;
+    }
+
+    button{
+        font-size:16px;
+        padding:13px;
+    }
+
+    .heart{
+        font-size:36px;
+    }
+
+    .love-message{
+        font-size:18px;
+    }
+
+    .love-message span{
+        font-size:24px;
+    }
+
+    .Bucketlist{
+        width:100%;
+        right:-100%;
+        padding:25px;
+    }
+
+    .Bucketlist.show{
+        right:0;
+    }
+
+    .Bucketlist h2{
+        font-size:26px;
+    }
+
+    .Bucketlist p{
+        font-size:18px;
+    }
+}
+
+/* Small Phones */
+@media (max-width:480px){
+
+    body{
+        padding:15px 8px;
+    }
+
+    #quiz{
+        width:100%;
+        padding:18px;
+    }
+
+    .page-title{
+        font-size:22px;
+    }
+
+    #quiz h2{
+        font-size:22px;
+    }
+
+    #quiz p{
+        font-size:17px;
+    }
+
+    input{
+        font-size:15px;
+    }
+
+    button{
+        font-size:15px;
+        padding:12px;
+    }
+
+    .Bucketlist{
+        padding:20px;
+    }
+
+    .Bucketlist p{
+        font-size:17px;
+    }
+}
+/* <------------------------------------------------------------------play button ----------------------------------------------------------------------------------------------> */
+    #playBtn{
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:50%;
+    background:#ffffff;
+    color:#fff;
+    font-size:14px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+#playBtn:hover{
+    background:#ff1744;
+    transform:scale(1.1);
+}
+
+#playBtn:active{
+    transform:scale(0.95);
+}
+      </style>
+    </head>
+    <body>
+        <section id="quiz">
+                <div class="question active">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>Enter password</p>
+        
+        
+        <input type="text" id="q1">
+        <button onclick="checkAnswer(0, 'ms11031004')">Next</button>
+        <audio src=""></audio>
+    </div>
+    <div class="question ">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>நான் காதல் என்று அறியாமலே  உன்னை காதல் உடன் பார்த்த முதல் தருணம்</p>
+        
+        <audio id="audio1" src="audio/start of love.m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio1')">❤️</button>
+        
+        <input type="text" id="q1">
+        <button onclick="checkAnswer(1, '10th result')">Next</button>
+        <audio src=""></audio>
+    </div>
+
+    <div class="question">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>நான் என்னவென்ற அறியாமல் உன் மீது அன்பை அதிகம் வைத்தது</p>
+        
+        <audio id="audio2" src="audio/increase the love.m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio2')">❤️</button>
+        
+        <input type="text" id="q2">
+        <button onclick="checkAnswer(2, 'corona time')">Next</button>
+    </div>
+
+    <div class="question">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>நான் உன்மேல் வைத்த அன்பை காதல் என உணர்த்தது</p>
+        
+        <audio id="audio3" src="audio/realise  the love.m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio3')">❤️</button>
+        
+        <input type="text" id="q3">
+        <button onclick="checkAnswer(3, 'when wasn_t speaking')">Next</button>
+    </div>
+
+    <div class="question">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>உன் மேல் கொண்ட காதல் என் மனதில் நிரந்திரமாக வேர் ஊன்றி வழந்தது</p>
+        
+        <audio id="audio4" src="audio/well of love .m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio4')">❤️</button>
+        
+        <input type="text" id="q4">
+        <button onclick="checkAnswer(4, 'my sadness')">Next</button>
+    </div>
+
+    <div class="question">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>நான் கொண்ட காதலை, நான் என்னை அறியாமல் வெளிப்படுத்தியது</p>
+        
+        <audio id="audio5" src="audio/expose  the love.m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio5')">❤️</button>
+        
+        <input type="text" id="q5">
+        <button onclick="checkAnswer(5, 'without you')">Next</button>
+    </div>
+
+    <div class="question">
+        <div class="heart">❤️</div>
+
+        <h2>Love</h2>
+        <p>நான் உன் மேல் கோவப்படாத காரணம் என்ன வென்றால் என் இதயத்தின்</p>
+        
+        <audio id="audio6" src="audio/you are my love.m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio6')">❤️</button>
+        
+        <input type="text" id="q6">
+        <button onclick="checkAnswer(6, 'queen')">Next</button>
+    </div>
+
+    <div class="question">
+        <div class="heart">❤️</div>
+
+        
+        <p>என் உன்மேல் கொண்ட காதல் குறியாமல் இருக்க காரணம் உலகில் உள்ள அனைத்து அதிசயங்களுக்கும் நகல் இருக்கிறது ஆனால் உன்னை போன்ற நகல் கூட இந்த 3 1/2 வருடங்களில்</p>
+        <audio id="audio6" src="audio/my love .m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio6')">❤️</button>
+        <input type="text" id="q7">
+        <button onclick="checkAnswer(7, 'can_t find')">Next</button>
+    </div>
+
+  <div class="question">
+    <div class="heart">❤️</div>
+
+    <h2>My Love ❤️</h2>
+
+    <p class="love-message">
+        Every moment with you is special, and every smile of yours brightens my day.
+        <br><br>
+        <span>I Love You Forever ❤️</span>
+    </p>
+
+    <button onclick="alert('❤️ Love You Forever ❤️')">
+        💖 Forever Together 💖
+    </button>
+
+    <button onclick="showBucketList()">
+        📋 My List
+    </button>
+</div>
+
+<div class="Bucketlist">
+    <div class="heart">❤️</div>
+
+    <h2>Our Bucket List ❤️</h2>
+
+    <p>
+🚌 Travel together on a bus at least once.<br>
+🤝 Go on long walks while holding hands.<br>
+🚗 Go on a long road trip together.<br>
+🌞 Wake up every morning and see your face first.<br>
+🌅 Watch every sunrise together.<br>
+❤️ Hold hands forever.<br>
+💍 Get married in the presence of all our family and loved ones.<br>
+    </p>
+    <audio id="audio7" src="audio/bucket list .m4a"></audio>
+
+    <button id="playBtn" onclick="playAudio('audio7')">❤️</button>
+    <button onclick="closeBucketList()">❌ Close</button>
+</div>
+    
+</section>
+<script>
+    const questions = document.querySelectorAll(".question");
+
+function checkAnswer(index, correctAnswer) {
+    const input = questions[index].querySelector("input").value.trim();
+
+    if (input.toLowerCase() === correctAnswer.toLowerCase()) {
+
+        // Hide current question
+        questions[index].classList.remove("active");
+
+        // Show next question
+        if (index + 1 < questions.length) {
+            questions[index + 1].classList.add("active");
+        } else {
+            alert("🎉 Quiz Completed!");
+        }
+
+    } else {
+        alert("My love retry ❤️❤️");
+    }
+}
+</script>
+<!-- <script>
+function showBucketList(){
+
+    // Hide the current question
+    document.querySelector(".question.active").classList.remove("active");
+
+    // Slide in the bucket list
+    document.querySelector(".Bucketlist").classList.add("show");
+}
+</script>
+<script>
+    function closeBucketList(){
+    document.querySelector(".Bucketlist").classList.remove("show");
+}
+</script> -->
+<script>
+    let currentQuestion = null;
+
+function showBucketList() {
+    currentQuestion = document.querySelector(".question.active");
+
+    if(currentQuestion){
+        currentQuestion.classList.remove("active");
+    }
+
+    document.querySelector(".Bucketlist").classList.add("show");
+}
+
+function closeBucketList() {
+    document.querySelector(".Bucketlist").classList.remove("show");
+
+    if(currentQuestion){
+        currentQuestion.classList.add("active");
+    }
+}
+</script>
+<script>
+    let currentAudio = null;
+
+function playAudio(id){
+
+    // Stop previous audio
+    if(currentAudio){
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+
+    currentAudio = document.getElementById(id);
+    currentAudio.play();
+}
+</script>
+
+<script>
+const titles = [
+    "❤️ Mohan loves Suriya ❤️",
+    "💖 Mohan loves Suriya 💖",
+    "💕 Mohan loves Suriya 💕",
+    "💘 Mohan loves Suriya 💘"
+];
+
+let i = 0;
+
+setInterval(() => {
+    document.title = titles[i];
+    i = (i + 1) % titles.length;
+}, 600);
+</script>
+    </body>
+</html>
